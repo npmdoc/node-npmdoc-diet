@@ -1,0 +1,732 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="http://dietjs.com/"
+
+    >diet (v0.15.0)</a>
+</h1>
+<h4>A tiny, fast and modular node.js web framework. Good for making fast & scalable apps and apis.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.diet">module diet</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.diet">
+            function <span class="apidocSignatureSpan"></span>diet
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.emit">
+            function <span class="apidocSignatureSpan">diet.</span>emit
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.many">
+            function <span class="apidocSignatureSpan">diet.</span>many
+            <span class="apidocSignatureSpan">(event, ttl, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.off">
+            function <span class="apidocSignatureSpan">diet.</span>off
+            <span class="apidocSignatureSpan">(type, listener)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.on">
+            function <span class="apidocSignatureSpan">diet.</span>on
+            <span class="apidocSignatureSpan">(type, listener)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.onAny">
+            function <span class="apidocSignatureSpan">diet.</span>onAny
+            <span class="apidocSignatureSpan">(fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.one">
+            function <span class="apidocSignatureSpan">diet.</span>one
+            <span class="apidocSignatureSpan">(event, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.toString">
+            function <span class="apidocSignatureSpan">diet.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">diet.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.diet.utils">module diet.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.utils.getHost">
+            function <span class="apidocSignatureSpan">diet.utils.</span>getHost
+            <span class="apidocSignatureSpan">(inputLocation, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.diet.utils.isset">
+            function <span class="apidocSignatureSpan">diet.utils.</span>isset
+            <span class="apidocSignatureSpan">(object)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.diet" id="apidoc.module.diet">module diet</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.diet.diet" id="apidoc.element.diet.diet">
+        function <span class="apidocSignatureSpan"></span>diet
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Server(options){
+
+       // -----------------------------------------------------------------------
+       //  Default values
+       // -----------------------------------------------------------------------
+
+           var options = options || {}
+
+       // -----------------------------------------------------------------------
+       //  Get project path
+       // -----------------------------------------------------------------------
+
+           var path = options.path || require(&#x27;path&#x27;).dirname(require(&#x27;callsite&#x27;)()[1].getFileName());
+
+       // -----------------------------------------------------------------------
+       //  Event: app.create
+       // -----------------------------------------------------------------------
+
+           module.exports.emit(&#x27;init&#x27;, { path: path, options: options })
+
+
+       // -----------------------------------------------------------------------
+       //  Print Diet Header to console (if not already initialized)
+       // -----------------------------------------------------------------------
+
+           if(!options.silent &#x26;&#x26; !initialized){
+               process.stdout.write(&#x27;\u001B[2J\u001B[0;0f&#x27;+&#x27; Diet &#x27;.inverse+(&#x27; (&#x27;+JSON.parse(require(&#x27;fs&#x27;).readFileSync(__dirname
++&#x27;/package.json&#x27;).toString()).version+&#x27;) ☺\n http://dietjs.com/&#x27;).dim+&#x27;\n\n&#x27;);
+               initialized = true;
+           }
+
+
+       // -----------------------------------------------------------------------
+       // Return a Server Instance
+       // -----------------------------------------------------------------------
+   	
+   	    var app = new App(path, options)
+   	
+   	
+   	// -----------------------------------------------------------------------
+   	//  Server is an Event Emitter
+   	// -----------------------------------------------------------------------
+       	
+       	var events = new EventEmitter({ wildcards: true });
+       	app.on = events.on;
+       	app.one = events.once;
+       	app.many = events.many;
+       	app.off = events.off;
+       	app.emit = events.emit;
+       	app.onAny = events.onAny;
+
+
+       // -----------------------------------------------------------------------
+       //  Attach HTTP Protocol Handler by default
+       // -----------------------------------------------------------------------	
+       	app.protocol(&#x27;http&#x27;, httpProtocol)
+       	module.exports.emit(&#x27;create&#x27;, { path: path, options: options, app: app })
+   	
+   	
+   	// -----------------------------------------------------------------------
+   	//  Return
+   	// -----------------------------------------------------------------------
+   	
+   	    return app;
+   	
+   	
+   }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.emit" id="apidoc.element.diet.emit">
+        function <span class="apidocSignatureSpan">diet.</span>emit
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">emit = function () {
+
+  this._events || init.call(this);
+
+  var type = arguments[0];
+
+  if (type === &#x27;newListener&#x27; &#x26;&#x26; !this.newListener) {
+    if (!this._events.newListener) { return false; }
+  }
+
+  // Loop through the *_all* functions and invoke them.
+  if (this._all) {
+    var l = arguments.length;
+    var args = new Array(l - 1);
+    for (var i = 1; i &#x3c; l; i++) args[i - 1] = arguments[i];
+    for (i = 0, l = this._all.length; i &#x3c; l; i++) {
+      this.event = type;
+      this._all[i].apply(this, args);
+    }
+  }
+
+  // If there is no &#x27;error&#x27; event listener then throw.
+  if (type === &#x27;error&#x27;) {
+
+    if (!this._all &#x26;&#x26;
+      !this._events.error &#x26;&#x26;
+      !(this.wildcard &#x26;&#x26; this.listenerTree.error)) {
+
+      if (arguments[1] instanceof Error) {
+        throw arguments[1]; // Unhandled &#x27;error&#x27; event
+      } else {
+        throw new Error(&#x22;Uncaught, unspecified &#x27;error&#x27; event.&#x22;);
+      }
+      return false;
+    }
+  }
+
+  var handler;
+
+  if(this.wildcard) {
+    handler = [];
+    var ns = typeof type === &#x27;string&#x27; ? type.split(this.delimiter) : type.slice();
+    searchListenerTree.call(this, handler, ns, this.listenerTree, 0);
+  }
+  else {
+    handler = this._events[type];
+  }
+
+  if (typeof handler === &#x27;function&#x27;) {
+    this.event = type;
+    if (arguments.length === 1) {
+      handler.call(this);
+    }
+    else if (arguments.length &#x3e; 1)
+      switch (arguments.length) {
+        case 2:
+          handler.call(this, arguments[1]);
+          break;
+        case 3:
+          handler.call(this, arguments[1], arguments[2]);
+          break;
+        // slower
+        default:
+          var l = arguments.length;
+          var args = new Array(l - 1);
+          for (var i = 1; i &#x3c; l; i++) args[i - 1] = arguments[i];
+          handler.apply(this, args);
+      }
+    return true;
+  }
+  else if (handler) {
+    var l = arguments.length;
+    var args = new Array(l - 1);
+    for (var i = 1; i &#x3c; l; i++) args[i - 1] = arguments[i];
+
+    var listeners = handler.slice();
+    for (var i = 0, l = listeners.length; i &#x3c; l; i++) {
+      this.event = type;
+      listeners[i].apply(this, args);
+    }
+    return (listeners.length &#x3e; 0) || !!this._all;
+  }
+  else {
+    return !!this._all;
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+           var path = options.path || require(&#x27;path&#x27;).dirname(require(&#x27;callsite&#x27;)()[1].getFileName());
+
+       // -----------------------------------------------------------------------
+       //  Event: app.create
+       // -----------------------------------------------------------------------
+
+           module.exports.<span class="apidocCodeKeywordSpan">emit</span>(&#x27;init&#x27;, { path: path, options: options })
+
+
+       // -----------------------------------------------------------------------
+       //  Print Diet Header to console (if not already initialized)
+       // -----------------------------------------------------------------------
+
+           if(!options.silent &#x26;&#x26; !initialized){
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.many" id="apidoc.element.diet.many">
+        function <span class="apidocSignatureSpan">diet.</span>many
+        <span class="apidocSignatureSpan">(event, ttl, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">many = function (event, ttl, fn) {
+  var self = this;
+
+  if (typeof fn !== &#x27;function&#x27;) {
+    throw new Error(&#x27;many only accepts instances of Function&#x27;);
+  }
+
+  function listener() {
+    if (--ttl === 0) {
+      self.off(event, listener);
+    }
+    fn.apply(this, arguments);
+  }
+
+  listener._origin = fn;
+
+  this.on(event, listener);
+
+  return self;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.off" id="apidoc.element.diet.off">
+        function <span class="apidocSignatureSpan">diet.</span>off
+        <span class="apidocSignatureSpan">(type, listener)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">off = function (type, listener) {
+  if (typeof listener !== &#x27;function&#x27;) {
+    throw new Error(&#x27;removeListener only takes instances of Function&#x27;);
+  }
+
+  var handlers,leafs=[];
+
+  if(this.wildcard) {
+    var ns = typeof type === &#x27;string&#x27; ? type.split(this.delimiter) : type.slice();
+    leafs = searchListenerTree.call(this, null, ns, this.listenerTree, 0);
+  }
+  else {
+    // does not use listeners(), so no side effect of creating _events[type]
+    if (!this._events[type]) return this;
+    handlers = this._events[type];
+    leafs.push({_listeners:handlers});
+  }
+
+  for (var iLeaf=0; iLeaf&#x3c;leafs.length; iLeaf++) {
+    var leaf = leafs[iLeaf];
+    handlers = leaf._listeners;
+    if (isArray(handlers)) {
+
+      var position = -1;
+
+      for (var i = 0, length = handlers.length; i &#x3c; length; i++) {
+        if (handlers[i] === listener ||
+          (handlers[i].listener &#x26;&#x26; handlers[i].listener === listener) ||
+          (handlers[i]._origin &#x26;&#x26; handlers[i]._origin === listener)) {
+          position = i;
+          break;
+        }
+      }
+
+      if (position &#x3c; 0) {
+        continue;
+      }
+
+      if(this.wildcard) {
+        leaf._listeners.splice(position, 1);
+      }
+      else {
+        this._events[type].splice(position, 1);
+      }
+
+      if (handlers.length === 0) {
+        if(this.wildcard) {
+          delete leaf._listeners;
+        }
+        else {
+          delete this._events[type];
+        }
+      }
+      return this;
+    }
+    else if (handlers === listener ||
+      (handlers.listener &#x26;&#x26; handlers.listener === listener) ||
+      (handlers._origin &#x26;&#x26; handlers._origin === listener)) {
+      if(this.wildcard) {
+        delete leaf._listeners;
+      }
+      else {
+        delete this._events[type];
+      }
+    }
+  }
+
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.on" id="apidoc.element.diet.on">
+        function <span class="apidocSignatureSpan">diet.</span>on
+        <span class="apidocSignatureSpan">(type, listener)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">on = function (type, listener) {
+
+  if (typeof type === &#x27;function&#x27;) {
+    this.onAny(type);
+    return this;
+  }
+
+  if (typeof listener !== &#x27;function&#x27;) {
+    throw new Error(&#x27;on only accepts instances of Function&#x27;);
+  }
+  this._events || init.call(this);
+
+  // To avoid recursion in the case that type == &#x22;newListeners&#x22;! Before
+  // adding it to the listeners, first emit &#x22;newListeners&#x22;.
+  this.emit(&#x27;newListener&#x27;, type, listener);
+
+  if(this.wildcard) {
+    growListenerTree.call(this, type, listener);
+    return this;
+  }
+
+  if (!this._events[type]) {
+    // Optimize the case of one listener. Don&#x27;t need the extra array object.
+    this._events[type] = listener;
+  }
+  else if(typeof this._events[type] === &#x27;function&#x27;) {
+    // Adding the second element, need to change to array.
+    this._events[type] = [this._events[type], listener];
+  }
+  else if (isArray(this._events[type])) {
+    // If we&#x27;ve already got an array, just append.
+    this._events[type].push(listener);
+
+    // Check for listener leak
+    if (!this._events[type].warned) {
+
+      var m = defaultMaxListeners;
+
+      if (typeof this._events.maxListeners !== &#x27;undefined&#x27;) {
+        m = this._events.maxListeners;
+      }
+
+      if (m &#x3e; 0 &#x26;&#x26; this._events[type].length &#x3e; m) {
+
+        this._events[type].warned = true;
+        console.error(&#x27;(node) warning: possible EventEmitter memory &#x27; +
+                      &#x27;leak detected. %d listeners added. &#x27; +
+                      &#x27;Use emitter.setMaxListeners() to increase limit.&#x27;,
+                      this._events[type].length);
+        console.trace();
+      }
+    }
+  }
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+								// console.log(&#x27; --&#x3e; controller [ RETURNED ]&#x27;)
+								count++; nextController(); next();
+								//signal.nextRoute();
+							}
+							
+							var domain = Domain.create();
+							
+							domain.<span class="apidocCodeKeywordSpan">on</span>(&#x27;error&#x27;, function(error){
+							    if (error.stack) console.error(error.stack);
+								
+								signal.fail.route = route;
+								signal.fail.error = error;
+								signal.fail.controller = controller;
+								
+								app.emit(&#x27;route.controller.error&#x27;, { method: method, path: path, route: route, app: app, type: type, controller
+: controller, error: error, signal: signal })
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.onAny" id="apidoc.element.diet.onAny">
+        function <span class="apidocSignatureSpan">diet.</span>onAny
+        <span class="apidocSignatureSpan">(fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onAny = function (fn) {
+
+  if (typeof fn !== &#x27;function&#x27;) {
+    throw new Error(&#x27;onAny only accepts instances of Function&#x27;);
+  }
+
+  if(!this._all) {
+    this._all = [];
+  }
+
+  // Add the function to the event listener collection.
+  this._all.push(fn);
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.one" id="apidoc.element.diet.one">
+        function <span class="apidocSignatureSpan">diet.</span>one
+        <span class="apidocSignatureSpan">(event, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">one = function (event, fn) {
+  this.many(event, 1, fn);
+  return this;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.toString" id="apidoc.element.diet.toString">
+        function <span class="apidocSignatureSpan">diet.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return text;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+       // -----------------------------------------------------------------------
+       //  Print Diet Header to console (if not already initialized)
+       // -----------------------------------------------------------------------
+
+           if(!options.silent &#x26;&#x26; !initialized){
+               process.stdout.write(&#x27;\u001B[2J\u001B[0;0f&#x27;+&#x27; Diet &#x27;.inverse+(&#x27; (&#x27;+JSON.parse(require
+(&#x27;fs&#x27;).readFileSync(__dirname+&#x27;/package.json&#x27;).<span class="apidocCodeKeywordSpan">toString</span>()).version
++&#x27;) ☺\n http://dietjs.com/&#x27;).dim+&#x27;\n\n&#x27;);
+               initialized = true;
+           }
+
+
+       // -----------------------------------------------------------------------
+       // Return a Server Instance
+       // -----------------------------------------------------------------------
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.diet.utils" id="apidoc.module.diet.utils">module diet.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.diet.utils.getHost" id="apidoc.element.diet.utils.getHost">
+        function <span class="apidocSignatureSpan">diet.utils.</span>getHost
+        <span class="apidocSignatureSpan">(inputLocation, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getHost = function (inputLocation, options){
+	var options = !options || typeof options == &#x27;function&#x27; ? {} : options ;
+	var protocolName = (typeof options == &#x27;object&#x27; &#x26;&#x26; options.cert || options.key || options.ca) ? &#x27;https&#x27; : &#x27;http&#x27; ;
+
+	// define location
+	if(!isNaN(inputLocation)) {
+		var location = url.parse(protocolName+&#x27;://0.0.0.0:&#x27;+inputLocation);
+	
+	} else if(typeof inputLocation == &#x27;string&#x27;) {
+	    var location = inputLocation.indexOf(&#x27;://&#x27;) == -1 ? &#x27;http://&#x27; + inputLocation : inputLocation ;
+			location = url.parse(location)
+	
+	} else if(typeof inputLocation == &#x27;object&#x27;) {
+		var location = inputLocation;
+		
+	} else if(!Utils.isset(inputLocation)){
+		var location = url.parse(protocolName+&#x27;://0.0.0.0:80/&#x27;);
+	}
+	
+	var port = location.protocol === &#x27;http:&#x27; &#x26;&#x26; (!options || (!options.cert &#x26;&#x26; !options.key))
+		? (location.port || 80)
+		: (location.port || 443) ;
+	
+	return { port: port, location: location }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+&#x22;use strict&#x22;
+const utils = require(&#x27;./utils&#x27;)
+module.exports = function(app, servers){
+	return function(location, options){
+		app.emit(&#x27;host&#x27;, { app: app, location: location, options: options })
+		let host = utils.<span class="apidocCodeKeywordSpan">getHost</span>(location, options)
+		app.hosts[host.location.host] = app
+	}
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.diet.utils.isset" id="apidoc.element.diet.utils.isset">
+        function <span class="apidocSignatureSpan">diet.utils.</span>isset
+        <span class="apidocSignatureSpan">(object)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isset(object){
+	return (object != &#x22;undefined&#x22; &#x26;&#x26; object != undefined &#x26;&#x26; object != null &#x26;&#x26; object != &#x22;&#x22; &#x26;&#x26; typeof(object) != &#x27;undefined&#x27;) ? true
+ : false ;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        } else if(typeof location == &#x27;string&#x27;) {
+            var location = location.indexOf(&#x27;://&#x27;) == -1 ? &#x27;http://&#x27; + location : location ;
+        	app.location = url.parse(location)
+
+        } else if(typeof location == &#x27;object&#x27;) {
+        	app.location = location;
+        	
+        } else if(!utils.<span class="apidocCodeKeywordSpan">isset</span>(location)){
+        	app.location = url.parse(protocolName+&#x27;://0.0.0.0:80/&#x27;);
+        } */
+
+        // define protocol
+		//var protocol = app.location.protocol === &#x27;http:&#x27; ? require(&#x27;http&#x27;) : require(&#x27;https&#x27;) ;
+		
+		// define port
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
