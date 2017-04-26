@@ -119,10 +119,7 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.diet.toString">
-            function <span class="apidocSignatureSpan">diet.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">diet.</span>_events</span>
 
         </li>
 
@@ -336,21 +333,21 @@
 
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-           var path = options.path || require('path').dirname(require('callsite')()[1].getFileName());
-
-       // -----------------------------------------------------------------------
-       //  Event: app.create
-       // -----------------------------------------------------------------------
-
-           module.exports.<span class="apidocCodeKeywordSpan">emit</span>('init', { path: path, options: options })
-
-
-       // -----------------------------------------------------------------------
-       //  Print Diet Header to console (if not already initialized)
-       // -----------------------------------------------------------------------
-
-           if(!options.silent &amp;&amp; !initialized){
+- Introducing `app.protocol(name, handler)`
+- Introducing Server Event Handlers
+  - `server.on(event, handler)`
+  - `server.off(event, handler)`
+  - `server.one(event, handler)`
+  - `server.onAll(event, handler)`
+  - `server.many(event, handler)`
+  - `server.<span class="apidocCodeKeywordSpan">emit</span>(event, handler)`
+- Introducing App Event Handlers
+- `app.on(event, handler)`
+- `app.off(event, handler)`
+- `app.one(event, handler)`
+- `app.onAll(event, handler)`
+- `app.many(event, handler)`
+- `app.emit(event, handler)`
 ...</pre></li>
     </ul>
 
@@ -383,7 +380,23 @@
 
   return self;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+- creates a thunk around the controller for generators when called with yield
+- Introducing `app.protocol(name, handler)`
+- Introducing Server Event Handlers
+  - `server.on(event, handler)`
+  - `server.off(event, handler)`
+  - `server.one(event, handler)`
+  - `server.onAll(event, handler)`
+  - `server.<span class="apidocCodeKeywordSpan">many</span>(event, handler)`
+  - `server.emit(event, handler)`
+- Introducing App Event Handlers
+- `app.on(event, handler)`
+- `app.off(event, handler)`
+- `app.one(event, handler)`
+- `app.onAll(event, handler)`
+- `app.many(event, handler)`
+...</pre></li>
     </ul>
 
 
@@ -464,7 +477,23 @@
 
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+- Introducing ES6 Generator Controllers (`yield` and `*`)
+- Introducing `app.controller` function method registering
+- can be called as a normal function
+- creates a thunk around the controller for generators when called with yield
+- Introducing `app.protocol(name, handler)`
+- Introducing Server Event Handlers
+  - `server.on(event, handler)`
+  - `server.<span class="apidocCodeKeywordSpan">off</span>(event, handler)`
+  - `server.one(event, handler)`
+  - `server.onAll(event, handler)`
+  - `server.many(event, handler)`
+  - `server.emit(event, handler)`
+- Introducing App Event Handlers
+- `app.on(event, handler)`
+- `app.off(event, handler)`
+...</pre></li>
     </ul>
 
 
@@ -532,22 +561,21 @@
   return this;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-								// console.log(' --&gt; controller [ RETURNED ]')
-								count++; nextController(); next();
-								//signal.nextRoute();
-							}
-							
-							var domain = Domain.create();
-							
-							domain.<span class="apidocCodeKeywordSpan">on</span>('error', function(error){
-							    if (error.stack) console.error(error.stack);
-								
-								signal.fail.route = route;
-								signal.fail.error = error;
-								signal.fail.controller = controller;
-								
-								app.emit('route.controller.error', { method: method, path: path, route: route, app: app, type: type, controller
-: controller, error: error, signal: signal })
+- Middleware renamed to Controller
+- Introducing ES6 Generator Controllers (`yield` and `*`)
+- Introducing `app.controller` function method registering
+- can be called as a normal function
+- creates a thunk around the controller for generators when called with yield
+- Introducing `app.protocol(name, handler)`
+- Introducing Server Event Handlers
+  - `server.<span class="apidocCodeKeywordSpan">on</span>(event, handler)`
+  - `server.off(event, handler)`
+  - `server.one(event, handler)`
+  - `server.onAll(event, handler)`
+  - `server.many(event, handler)`
+  - `server.emit(event, handler)`
+- Introducing App Event Handlers
+- `app.on(event, handler)`
 ...</pre></li>
     </ul>
 
@@ -590,41 +618,26 @@
   this.many(event, 1, fn);
   return this;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.diet.toString" id="apidoc.element.diet.toString">
-        function <span class="apidocSignatureSpan">diet.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
-}</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-
-
-       // -----------------------------------------------------------------------
-       //  Print Diet Header to console (if not already initialized)
-       // -----------------------------------------------------------------------
-
-           if(!options.silent &amp;&amp; !initialized){
-               process.stdout.write('\u001B[2J\u001B[0;0f'+' Diet '.inverse+(' ('+JSON.parse(require
-('fs').readFileSync(__dirname+'/package.json').<span class="apidocCodeKeywordSpan">toString</span>()).version
-+') â˜º\n http://dietjs.com/').dim+'\n\n');
-               initialized = true;
-           }
-
-
-       // -----------------------------------------------------------------------
-       // Return a Server Instance
-       // -----------------------------------------------------------------------
+- Introducing `app.controller` function method registering
+- can be called as a normal function
+- creates a thunk around the controller for generators when called with yield
+- Introducing `app.protocol(name, handler)`
+- Introducing Server Event Handlers
+  - `server.on(event, handler)`
+  - `server.off(event, handler)`
+  - `server.<span class="apidocCodeKeywordSpan">one</span>(event, handler)`
+  - `server.onAll(event, handler)`
+  - `server.many(event, handler)`
+  - `server.emit(event, handler)`
+- Introducing App Event Handlers
+- `app.on(event, handler)`
+- `app.off(event, handler)`
+- `app.one(event, handler)`
 ...</pre></li>
     </ul>
+
+
 
 
 
