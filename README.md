@@ -1,6 +1,6 @@
 # npmdoc-diet
 
-#### api documentation for  [diet (v0.15.0)](http://dietjs.com/)  [![npm package](https://img.shields.io/npm/v/npmdoc-diet.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-diet) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-diet.svg)](https://travis-ci.org/npmdoc/node-npmdoc-diet)
+#### basic api documentation for  [diet (v0.15.0)](http://dietjs.com/)  [![npm package](https://img.shields.io/npm/v/npmdoc-diet.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-diet) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-diet.svg)](https://travis-ci.org/npmdoc/node-npmdoc-diet)
 
 #### A tiny, fast and modular node.js web framework. Good for making fast & scalable apps and apis.
 
@@ -109,7 +109,8 @@
         "coveralls": "jscoverage tests tests-cov",
         "test": "mocha tests"
     },
-    "version": "0.15.0"
+    "version": "0.15.0",
+    "bin": {}
 }
 ```
 
